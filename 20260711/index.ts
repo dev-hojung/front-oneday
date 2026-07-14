@@ -60,3 +60,5 @@ assertUser(responseData);
 // 여기부터 responseData는 User로 좁혀진다. (if 블록으로 감싸지 않아도 됨)
 console.log(responseData.id.toUpperCase());
 console.log(responseData.role);
+
+export {};

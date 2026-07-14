@@ -48,3 +48,5 @@ function renderMessage(state: RequestState): string {
     }
   }
 }
+
+export {};

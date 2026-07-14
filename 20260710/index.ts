@@ -49,3 +49,5 @@ if (isUser(raw)) {
   // 여기서 raw는 User가 아님이 확정된 분기
   console.error("Invalid user payload");
 }
+
+export {};
