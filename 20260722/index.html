@@ -1,0 +1,17 @@
+<div id="box" style="width: 80px; height: 80px; background: tomato;"></div>
+<button id="move">move</button>
+
+<script>
+  const box = document.querySelector("#box");
+  const button = document.querySelector("#move");
+
+  button.addEventListener("click", () => {
+    // 읽기: 현재 레이아웃 값은 먼저 가져온다.
+    const currentLeft = box.getBoundingClientRect().left;
+
+    // 쓰기: 화면 변경은 다음 프레임 직전에 예약한다.
+    requestAnimationFrame(() => {
+      box.style.transform = `translateX(${currentLeft + 100}px)`;
+    });
+  });
+</script>
