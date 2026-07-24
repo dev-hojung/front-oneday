@@ -1,0 +1,19 @@
+<button id="btn">Run</button>
+<pre id="log"></pre>
+<script>
+  const log = (msg) => {
+    document.querySelector('#log').textContent += msg + '\n';
+  };
+
+  document.querySelector('#btn').addEventListener('click', () => {
+    log('task: click handler start');
+
+    queueMicrotask(() => log('microtask: queueMicrotask'));
+    Promise.resolve().then(() => log('microtask: promise'));
+
+    requestAnimationFrame(() => log('rAF: before repaint'));
+    setTimeout(() => log('task: setTimeout(0)'), 0);
+
+    log('task: click handler end');
+  });
+</script>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FOUC와 render-blocking 리소스</title>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 32px;
+        background: #f7f5ef;
+        color: #1f2937;
+      }
+
+      .hero {
+        max-width: 720px;
+        padding: 32px;
+        border-radius: 24px;
+        background: white;
+        box-shadow: 0 20px 60px rgba(31, 41, 55, 0.08);
+      }
+
+      .ready .hero {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: white;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(99, 102, 241, 0.12);
+        color: #4f46e5;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero">
+      <span class="badge">FOUC demo</span>
+      <h1>스타일이 늦게 붙으면 화면이 흔들린다</h1>
+      <p>
+        이 페이지는 1초 뒤에 <code>ready</code> 클래스를 붙여서, 스타일이 나중에
+        확정될 때 어떤 변화가 보이는지 보여준다.
+      </p>
+      <p>
+        실제 서비스에서는 이 현상을 줄이기 위해 첫 화면 CSS는 먼저, 비핵심 JS는
+        뒤로 보낸다.
+      </p>
+    </main>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.documentElement.classList.add('ready');
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
